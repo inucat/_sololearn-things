@@ -23,12 +23,12 @@ function subRoutine () {
   // Get canvas element
   let canv = document.getElementById("cv");
   if (!canv) { 
-    colsole.log("Canvas was not found!");
+    console.log("Canvas was not found!");
     return;
   }
   let ctx = canv.getContext("2d");
   if (!ctx) { 
-    colsole.log("Canvas Context could not be obtained!");
+    console.log("Canvas Context could not be obtained!");
     return; 
   }
   
