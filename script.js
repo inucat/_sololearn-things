@@ -1,6 +1,5 @@
 /*  
-  Creative Commoms CC-BY
-  (c) 2021 Shizuku (inucat) 
+  Creative Commons Zero v1.0 Universal
  */
 "use strict"
 
@@ -20,10 +19,7 @@ function changeTheme() {
 }
 
 function subRoutine () {
-  // <button id="themeChanger" type="button" onclick="changeTheme()">Light/Dark</button>
-  const htmlRoot = document.getElementsByTagName("html")[0];
-  const bodyRoot = document.createElement("body");
-  htmlRoot.appendChild(bodyRoot);
+  const bodyRoot = document.getElementsByTagName("body")[0];
 
   let btn = document.createElement("button");
   btn.innerText = "Dark/Light";
@@ -31,6 +27,7 @@ function subRoutine () {
   btn.setAttribute("type", "button");
   btn.onclick = changeTheme;
   bodyRoot.appendChild(btn);
+
   // Get canvas element
   let canv = document.getElementById("cv");
   canv = document.createElement("canvas");
@@ -39,8 +36,6 @@ function subRoutine () {
     return;
   }
   bodyRoot.appendChild(canv);
-
-  
 
   let ctx = canv.getContext("2d");
   if (!ctx) { 
@@ -55,8 +50,6 @@ function subRoutine () {
 
   canv.setAttribute("width", `${CANVAS_SIZE}px`);
   canv.setAttribute("height", `${CANVAS_SIZE}px`);
-  // console.log("Canvas size:", window.innerHeight, window.innerWidth, "-->", CANVAS_SIZE);
-  // console.log("Center position:", CX, CY);
 
   const drawHandle = function(lineWidth, tipX, tipY) {
     ctx.save();
@@ -96,8 +89,6 @@ function subRoutine () {
       ctx.lineTo(
         CX + Math.cos(Math.PI * i/6) * RADIUS * HOURMARK_OUTER_POS,
         CY + Math.sin(Math.PI * i/6) * RADIUS * HOURMARK_OUTER_POS);
-        // CX + Math.cos(Math.PI * i/6) * (RADIUS - FRAME_LINE_WIDTH),
-        // CY + Math.sin(Math.PI * i/6) * (RADIUS - FRAME_LINE_WIDTH));
       ctx.stroke();
     }
     ctx.restore();
@@ -129,22 +120,22 @@ function subRoutine () {
       CY + RADIUS * Math.sin(angleHour) * HAND_LEN_H
     ];
 
+    // Clear canvas
     ctx.fillStyle = colorBg;
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
     drawFrame();
-
     drawHandle(HAND_WIDTH_S, sx, sy);
     drawHandle(HAND_WIDTH_M, mx, my);
     drawHandle(HAND_WIDTH_H, hx, hy);
   };
 
-  // To call the function by button (not so clever though)
+  // To call the function by button
   g_updateClock = updateClock;
 
   // Timer
   updateClock();
-  setInterval(updateClock, 1000);
+  setInterval(updateClock, 500);
 }
 
 window.onload = subRoutine();
