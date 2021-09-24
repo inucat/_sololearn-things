@@ -21,12 +21,16 @@ function changeTheme() {
 
 function subRoutine () {
   // <button id="themeChanger" type="button" onclick="changeTheme()">Light/Dark</button>
+  const htmlRoot = document.getElementsByTagName("html")[0];
+  const bodyRoot = document.createElement("body");
+  htmlRoot.appendChild(bodyRoot);
+
   let btn = document.createElement("button");
-  btn.nodeValue = "Dark/Light";
+  btn.innerText = "Dark/Light";
   btn.setAttribute("id", "themeChanger");
   btn.setAttribute("type", "button");
   btn.onclick = changeTheme;
-  document.getElementsByTagName("html")[0].appendChild(btn);
+  bodyRoot.appendChild(btn);
   // Get canvas element
   let canv = document.getElementById("cv");
   canv = document.createElement("canvas");
@@ -34,7 +38,7 @@ function subRoutine () {
     console.log("Canvas was not found!");
     return;
   }
-  document.getElementsByTagName("html")[0].appendChild(canv);
+  bodyRoot.appendChild(canv);
 
   
 
@@ -139,6 +143,7 @@ function subRoutine () {
   g_updateClock = updateClock;
 
   // Timer
+  updateClock();
   setInterval(updateClock, 1000);
 }
 
