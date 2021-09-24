@@ -20,12 +20,24 @@ function changeTheme() {
 }
 
 function subRoutine () {
+  // <button id="themeChanger" type="button" onclick="changeTheme()">Light/Dark</button>
+  let btn = document.createElement("button");
+  btn.nodeValue = "Dark/Light";
+  btn.setAttribute("id", "themeChanger");
+  btn.setAttribute("type", "button");
+  btn.onclick = changeTheme;
+  document.getElementsByTagName("html")[0].appendChild(btn);
   // Get canvas element
   let canv = document.getElementById("cv");
+  canv = document.createElement("canvas");
   if (!canv) { 
     console.log("Canvas was not found!");
     return;
   }
+  document.getElementsByTagName("html")[0].appendChild(canv);
+
+  
+
   let ctx = canv.getContext("2d");
   if (!ctx) { 
     console.log("Canvas Context could not be obtained!");
