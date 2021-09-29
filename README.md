@@ -1,5 +1,4 @@
-# defensive-degu
-SoloLearn JavaScript Playground
+<!-- # defensive-degu -->
+# SoloLearn Playground
 
-My Profile: 
-https://www.sololearn.com/Profile/3215465/?ref=app
+My Profile: https://www.sololearn.com/Profile/3215465
