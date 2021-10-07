@@ -41,15 +41,33 @@ static char shiftChar(char ch, int sval) {
 }
 
 int main (int argc, char *argv[]) {
+    // Amount of shift
     int shift_val = 0;
-    scanf("%d", &shift_val);
-    if (!(shift_val%26)) {
-        fprintf(stderr, "Shift value is assumed 0.\n");
-    }
 
     // Secure memory to store words
     char encText[8192] = {0};
-    fgets(encText, 8192-8, stdin);
+
+    // If executed without any arguments
+    if (argc == 1) {
+        scanf("%d", &shift_val);
+        if (!(shift_val%26)) {
+            fprintf(stderr, "Shift value is assumed 0.\n");
+        }
+        fgets(encText, 8192-8, stdin);
+    } else {
+        sscanf(argv[1], "%d", &shift_val);
+        for (int i=2, pText=0; i < argc; i++) {
+            sscanf(argv[i], "%s", encText + pText);
+            pText += strlen(argv[i]);
+            if (i != argc - 1) {
+                *(encText + pText++) = ' ';
+            }
+            if (pText > 8192) {
+                encText[8191] = 0;
+                break;
+            }
+        }
+    }
 
     // Shift the letters in the text
     for (int i=0; encText[i]; i++) {
